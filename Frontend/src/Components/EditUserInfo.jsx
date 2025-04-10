@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserName } from '../redux/authSlice';
 import { useState } from 'react';
+import {baseUrl} from '../Data/config'
 
 export default function EditUserInfo({ onCancel }) {
   const user = useSelector((state) => state.auth.user);
@@ -11,7 +12,7 @@ export default function EditUserInfo({ onCancel }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+    const response = await fetch( baseUrl +'/user/profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

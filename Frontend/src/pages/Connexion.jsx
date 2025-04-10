@@ -38,7 +38,7 @@ export default function SignIn() {
 
       const token = loginData.body.token;
 
-      const profileResponse = await fetch('http://localhost:3001/api/v1/user/profile', {
+      const profileResponse = await fetch( baseUrl + '/user/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -63,6 +63,7 @@ export default function SignIn() {
     }));
 
       navigate('/client');
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       alert("Erreur de connexion");
     }
