@@ -102,6 +102,83 @@ paths:
         '500':
           description: Internal Server Error
 
+  /accounts/{accountId}/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions module
+      summary: Get transactions for account
+      description: Return all transactions for the current month for a given account
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+          description: ID of the user's account
+      responses:
+        '200':
+          description: List of transactions retrieved successfully
+          schema:
+              $ref: '#/definitions/Transaction'
+        '404':
+          description: Account not found
+        '401':
+          description: Unauthorized
+
+  /transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions module
+      summary: Get transaction details
+      description: Return detailed information about a specific transaction
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+          description: ID of the transaction
+      responses:
+        '200':
+          description: Transaction details retrieved successfully
+        '404':
+          description: Transaction not found
+        '401':
+          description: Unauthorized
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Transactions module
+      summary: Update transaction information
+      description: Update metadata for a specific transaction (note, category, etc.)
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Fields to update
+          required: true
+          schema:
+            type: object
+            properties:
+              note:
+                type: string
+              category:
+                type: string
+      responses:
+        '200':
+          description: Transaction updated successfully
+        '400':
+          description: Invalid request body
+        '404':
+          description: Transaction not found
+        '401':
+          description: Unauthorized
 
 securityDefinitions:
   Bearer:
@@ -164,81 +241,16 @@ definitions:
       userName:
         type: string
 
-
-/accounts/{accountId}/transactions:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions module
-      summary: Get transactions for account
-      description: Return all transactions for the current month for a given account
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          type: string
-          description: ID of the user's account
-      responses:
-        '200':
-          description: List of transactions retrieved successfully
-        '404':
-          description: Account not found
-        '401':
-          description: Unauthorized
-
-/transactions/{transactionId}:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions module
-      summary: Get transaction details
-      description: Return detailed information about a specific transaction
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          type: string
-          description: ID of the transaction
-      responses:
-        '200':
-          description: Transaction details retrieved successfully
-        '404':
-          description: Transaction not found
-        '401':
-          description: Unauthorized
-
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions module
-      summary: Update transaction information
-      description: Update metadata for a specific transaction (note, category, etc.)
-      parameters:
-        - name: transactionId
-          in: path
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Fields to update
-          required: true
-          schema:
-            type: object
-            properties:
-              note:
-                type: string
-              category:
-                type: string
-      responses:
-        '200':
-          description: Transaction updated successfully
-        '400':
-          description: Invalid request body
-        '404':
-          description: Transaction not found
-        '401':
-          description: Unauthorized
-
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      amount:
+        type: number
+      date:
+        type: string
+      note:
+        type: string
+      category:
+        type: string
