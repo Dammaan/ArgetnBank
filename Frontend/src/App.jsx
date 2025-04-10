@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Client from "./pages/Client";
-import Connexion from "./pages/Connexion";
+import Home from "./pages/home";
+import Client from "./pages/profile";
+import Connexion from "./pages/login";
 
 
 function App() {

@@ -15,8 +15,8 @@ body {
 
 .main {
   flex: 1;
+  min-height: calc(90vh - 60px);
 }
-
 .bg-dark {
   background-color: #12002b;
 }
@@ -152,6 +152,14 @@ body {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
+
+.sign-in-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
 
 .sign-in-button {
   display: block;
@@ -297,4 +305,61 @@ body {
 .title-dark {
   color: #2c3e50;
   margin-bottom: 1rem;
+}
+
+.client-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.client-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .client-title {
+    font-size: 2.5rem;
+  }
+
+  .client-header {
+    padding: 5rem 1rem;
+  }
+}
+.client-header {
+  text-align: center;
+  color: white;
+  padding: 0rem 0rem 2rem;
+}
+
+.client-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.account-section {
+  padding: 0 1rem 3rem;
+}
+
+.account {
+  background-color: white;
+
+  width: 100%;
+  max-width: 80%;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 720px) {
+  .account {
+    flex-direction: row;
+  }
 }

@@ -4,8 +4,7 @@ import { signIn } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import MainNav from '../Components/Nav';
-import {baseUrl} from '../Data/config'
-
+import { baseUrl } from '../Data/config';
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      const loginResponse = await fetch( baseUrl +'/user/login', {
+      const loginResponse = await fetch(baseUrl + '/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,7 +37,7 @@ export default function SignIn() {
 
       const token = loginData.body.token;
 
-      const profileResponse = await fetch( baseUrl + '/user/profile', {
+      const profileResponse = await fetch(baseUrl + '/user/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +59,7 @@ export default function SignIn() {
         firstName,
         lastName,
         token,
-    }));
+      }));
 
       navigate('/client');
     // eslint-disable-next-line no-unused-vars
@@ -74,38 +73,39 @@ export default function SignIn() {
       <div>
         <MainNav />
       </div>
-      
 
       <main className="main bg-dark">
-        <section className="sign-in-content">
-          <i className="fa fa-user-circle sign-in-icon"></i>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="input-wrapper">
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="input-wrapper">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
-              <label htmlFor="remember-me">Remember me</label>
-            </div>
-            <button type="submit" className="sign-in-button">Sign In</button>
-          </form>
-        </section>
+        <div className="sign-in-wrapper">
+          <section className="sign-in-content">
+            <i className="fa fa-user-circle sign-in-icon"></i>
+            <h1>Sign In</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="input-wrapper">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="input-wrapper">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="input-remember">
+                <input type="checkbox" id="remember-me" />
+                <label htmlFor="remember-me">Remember me</label>
+              </div>
+              <button type="submit" className="sign-in-button">Sign In</button>
+            </form>
+          </section>
+        </div>
       </main>
 
       <footer className="footer">
